@@ -1,0 +1,123 @@
+{
+  "campaign": "Lazarus 19-Day A/B Test",
+  "attribution": "Lazarus Group (G0032) / HIDDEN COBRA / Diamond Sleet",
+  "researcher": "toxy4ny (KL3FT3Z)",
+  "waves": [
+    {
+      "id": "wave_1",
+      "name": "OpenClaw Airdrop",
+      "date": "2026-03-20",
+      "psychological_vector": "greed",
+      "trigger": "FOMO - fake $5000 CLAW token airdrop",
+      "redirect_url": "share.google/eGzdhAucWKKcwkZi9",
+      "landing_domain": "token-claw.xyz",
+      "c2_domain": "watery-compost.today",
+      "payload": "eleven.js (obfuscated wallet drainer)",
+      "attacker_wallet": "0x6981E9EA7023a8407E4B08ad97f186A5CBDaFCf5",
+      "target_platform": "GitHub developers who starred OpenClaw repos",
+      "delivery": "GitHub discussion mass-mention -> email notification",
+      "status": "sinkholed"
+    },
+    {
+      "id": "wave_2",
+      "name": "Fake VS Code CVE",
+      "date": "2026-03-27",
+      "psychological_vector": "fear",
+      "trigger": "Urgency - fake critical VS Code vulnerability",
+      "redirect_url": "share.google/N3NwdcmyaYu9kwZ6D",
+      "fake_cve": "CVE-2026-40271-64398",
+      "fake_researcher": "Nathaniel Pemberton, Precision Algorithmics",
+      "claimed_affected_versions": "1.05.0-1.112.4",
+      "target_platform": "Microsoft Windows only",
+      "delivery": "GitHub discussion mass-mention -> email notification",
+      "status": "active"
+    },
+    {
+      "id": "wave_3",
+      "name": "Uniswap Recruitment",
+      "date": "2026-04-08",
+      "psychological_vector": "ambition",
+      "trigger": "Dream job - $300k-$450k remote dev position",
+      "redirect_url": "share.google/GVTYMEMANZWqTptr2",
+      "impersonated_company": "Uniswap",
+      "salary_range": "$300,000-$450,000",
+      "delivery": "GitHub discussion mass-mention -> email notification",
+      "linguistic_markers": ["Every roles are fully online", "excessive salary"],
+      "status": "active"
+    }
+  ],
+  "infrastructure": {
+    "domains": ["token-claw.xyz", "watery-compost.today"],
+    "google_share_redirects": [
+      "share.google/eGzdhAucWKKcwkZi9",
+      "share.google/N3NwdcmyaYu9kwZ6D",
+      "share.google/GVTYMEMANZWqTptr2"
+    ],
+    "attacker_wallets": ["0x6981E9EA7023a8407E4B08ad97f186A5CBDaFCf5"],
+    "payloads": ["eleven.js", "GolangGhost", "PylangGhost", "StoatWaffle"],
+    "delivery_mechanism": "GitHub notification pipeline abuse"
+  },
+  "related_campaigns": {
+    "operation_dream_job": {
+      "cluster_names": ["DeathNote", "NukeSped"],
+      "active_since": "2019",
+      "targets": ["financial", "crypto", "defense", "academic"]
+    },
+    "contagious_interview": {
+      "cluster_names": ["DeceptiveDevelopment", "DEV#POPPER", "Famous Chollima"],
+      "active_since": "2022-12",
+      "malware": ["GolangGhost", "PylangGhost", "StoatWaffle"],
+      "c2_infrastructure": {
+        "vercel_stage1": ["task-hrec.vercel.app", "kb102531x.vercel.app", "brantwork.vercel.app"],
+        "dedicated_c2": ["147.124.213.232", "147.124.212.125", "216.250.251.87"],
+        "secondary": ["45.43.11.199", "66.235.63.55", "66.235.168.238", "45.59.163.55"],
+        "ftp_servers": ["195.201.104.53", "144.172.89.198", "216.126.227.239"],
+        "hosting_providers": ["Majestic Hosting (AS396073)", "TIER-NET (AS397423)", "MonoVM"]
+      },
+      "encryption_keys": {
+        "file_encryption": "G01d*8@(",
+        "network_module": "G0Md*8@(",
+        "base85_layer": "Vw1aGYoP",
+        "tsunami_url": "!!!HappyPenguin1950!!!",
+        "client_payload": "Xt3rqfmL",
+        "metamask_injector": "Ze4pq4iT",
+        "binary_protocol_xor": "0xcb"
+      }
+    },
+    "axios_npm_compromise": {
+      "date": "2026-03-30",
+      "actor": "UNC1069 / BlueNoroff",
+      "malicious_versions": ["axios@1.14.1", "axios@0.30.4"],
+      "trojan_dependency": "plain-crypto-js@4.2.1",
+      "malware_family": "WAVESHAPER",
+      "cve": "CVE-2026-33634"
+    }
+  },
+  "mitre_attack_techniques": {
+    "initial_access": ["T1566.001", "T1566.002", "T1566.003"],
+    "execution": ["T1204.002", "T1047", "T1053.005"],
+    "persistence": ["T1543.003", "T1547.001", "T1574.001"],
+    "defense_evasion": ["T1027.009", "T1027.013", "T1036.005", "T1553.002"],
+    "credential_access": ["T1056.001", "T1555"],
+    "collection": ["T1074.001", "T1560.003"],
+    "command_and_control": ["T1132.001", "T1573.001", "T1102.001"],
+    "exfiltration": ["T1048.003"],
+    "impact": ["T1489", "T1561.002"]
+  },
+  "fake_cve_indicators": {
+    "cve_id": "CVE-2026-40271-64398",
+    "format_anomaly": "5-digit suffix (standard is 4-digit or 5-digit without dash extension)",
+    "not_in_mitre": true,
+    "not_in_nvd": true,
+    "not_in_vulngraph": true,
+    "fake_attribution": "Nathaniel Pemberton, Precision Algorithmics",
+    "version_anomaly": "Claims VS Code 1.112.x (does not exist)"
+  },
+  "openclaw_attack_surface": {
+    "total_real_cves": 217,
+    "critical_cves": 11,
+    "high_cves": 91,
+    "prevalent_cwes": ["CWE-863", "CWE-22", "CWE-78", "CWE-306", "CWE-770", "CWE-918"],
+    "poc_available": 6
+  }
+}

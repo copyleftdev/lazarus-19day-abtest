@@ -1,0 +1,158 @@
+id: lazarus-beavertail-c2-port-signature
+
+info:
+  name: Lazarus BeaverTail/OtterCookie C2 Port Signature
+  author: vajra-sec-experiment
+  severity: critical
+  description: |
+    Detects the characteristic multi-port signature of Lazarus Contagious Interview
+    C2 servers. Any server simultaneously presenting ports 1224, 1244, 5918, 5934,
+    5961, 5974 is likely Lazarus infrastructure.
+  reference:
+    - https://redasgard.com/blog/hunting-lazarus-contagious-interview-c2-infrastructure
+    - https://redasgard.com/blog/hunting-lazarus-part3-infrastructure-too-perfect
+  tags: lazarus,apt,c2,north-korea
+  metadata:
+    threat_actor: Lazarus Group (G0032)
+    campaign: Contagious Interview
+    malware: BeaverTail, OtterCookie
+
+tcp:
+  - inputs:
+      - data: ""
+    host:
+      - "{{Hostname}}"
+    port: 1244
+    matchers:
+      - type: dsl
+        dsl:
+          - "true"
+
+  - inputs:
+      - data: ""
+    host:
+      - "{{Hostname}}"
+    port: 5918
+    matchers:
+      - type: dsl
+        dsl:
+          - "true"
+
+---
+id: lazarus-z238-binary-protocol
+
+info:
+  name: Lazarus Z238 Custom Binary Protocol
+  author: vajra-sec-experiment
+  severity: critical
+  description: |
+    Detects the custom binary protocol used by Lazarus C2 on ports 22411-22412.
+    Banner response 00 00 2c d4 indicates Z238 binary protocol server.
+  reference:
+    - https://redasgard.com/blog/hunting-lazarus-contagious-interview-c2-infrastructure
+  tags: lazarus,apt,c2,binary-protocol
+
+tcp:
+  - inputs:
+      - data: "\x00\x00\x00\x00"
+    host:
+      - "{{Hostname}}"
+    port: 22411,22412
+    read-size: 4
+    matchers:
+      - type: binary
+        binary:
+          - "00002cd4"
+
+---
+id: lazarus-openclaw-phishing-site
+
+info:
+  name: Lazarus OpenClaw Phishing Site Detection
+  author: vajra-sec-experiment
+  severity: high
+  description: |
+    Detects cloned OpenClaw sites used for wallet-draining phishing.
+    Checks for the eleven.js wallet drainer payload.
+  reference:
+    - https://www.ox.security/blog/openclaw-github-phishing-crypto-wallet-attack/
+  tags: lazarus,phishing,wallet-drainer
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+      - "{{BaseURL}}/eleven.js"
+      - "{{BaseURL}}/claim"
+
+    matchers-condition: or
+    matchers:
+      - type: word
+        words:
+          - "token-claw.xyz"
+          - "watery-compost.today"
+          - "eleven.js"
+          - "0x6981E9EA7023a8407E4B08ad97f186A5CBDaFCf5"
+
+      - type: word
+        words:
+          - "PromptTx"
+          - "nuke()"
+        condition: and
+
+---
+id: lazarus-pylangghost-c2
+
+info:
+  name: Lazarus PylangGhost RAT C2 Detection
+  author: vajra-sec-experiment
+  severity: critical
+  description: Detects PylangGhost RAT C2 infrastructure
+  reference:
+    - https://any.run/cybersecurity-blog/pylangghost-malware-analysis/
+  tags: lazarus,apt,rat,pylangghost
+
+http:
+  - method: POST
+    path:
+      - "{{BaseURL}}/"
+    headers:
+      User-Agent: "python-requests/2.31.0"
+      Content-Type: "application/octet-stream"
+    body: "test"
+
+    matchers-condition: and
+    matchers:
+      - type: status
+        status:
+          - 200
+      - type: word
+        part: header
+        words:
+          - "application/octet-stream"
+
+---
+id: lazarus-vercel-stage1-distribution
+
+info:
+  name: Lazarus Vercel Stage 1 Distribution Check
+  author: vajra-sec-experiment
+  severity: high
+  description: |
+    Checks known Lazarus Vercel distribution domains for active C2 endpoints.
+  reference:
+    - https://redasgard.com/blog/hunting-lazarus-contagious-interview-c2-infrastructure
+  tags: lazarus,c2,vercel,distribution
+
+http:
+  - method: GET
+    path:
+      - "https://tetrismic.vercel.app/"
+      - "https://codeviewer-three.vercel.app/"
+
+    matchers:
+      - type: status
+        status:
+          - 200
+          - 301
+          - 302

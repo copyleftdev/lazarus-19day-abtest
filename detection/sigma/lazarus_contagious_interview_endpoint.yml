@@ -1,0 +1,163 @@
+title: Lazarus Contagious Interview - VS Code Workspace Telemetry Exfiltration
+id: c3d4e5f6-7890-4cde-f012-345678901cde
+status: experimental
+description: |
+    Detects malicious workspace initialization scripts that collect system
+    telemetry and exfiltrate it to attacker-controlled infrastructure,
+    as observed in Lazarus Contagious Interview campaigns.
+references:
+    - https://github.com/toxy4ny/lazarus-code
+    - https://thehackernews.com/2026/03/north-korean-hackers-abuse-vs-code-auto.html
+author: vajra-sec-experiment
+date: 2026/04/08
+tags:
+    - attack.execution
+    - attack.t1059.007  # Command and Scripting Interpreter: JavaScript
+    - attack.collection
+    - attack.t1119       # Automated Collection
+    - attack.exfiltration
+    - attack.t1041       # Exfiltration Over C2 Channel
+level: high
+
+logsource:
+    category: process_creation
+    product: windows
+
+detection:
+    # Node.js executing workspace init scripts
+    selection_node_init:
+        Image|endswith: '\node.exe'
+        CommandLine|contains:
+            - 'init-workspace'
+            - 'workspace-init'
+            - 'setup-workspace'
+
+    # PowerShell variant
+    selection_ps_init:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains:
+            - 'init-workspace.ps1'
+            - 'VSCode-Workspace-Init'
+
+    # Bash variant via WSL or Git Bash
+    selection_bash_init:
+        Image|endswith:
+            - '\bash.exe'
+            - '\sh.exe'
+        CommandLine|contains: 'init-workspace.sh'
+
+    # VS Code launching suspicious child processes
+    selection_vscode_child:
+        ParentImage|endswith: '\Code.exe'
+        Image|endswith:
+            - '\node.exe'
+            - '\powershell.exe'
+            - '\cmd.exe'
+        CommandLine|contains:
+            - 'collectTelemetry'
+            - 'sendToTracker'
+            - 'phishing-tracker'
+
+    condition: selection_node_init or selection_ps_init or selection_bash_init or selection_vscode_child
+
+falsepositives:
+    - Legitimate workspace initialization scripts (review CommandLine for tracker URLs)
+---
+title: Lazarus PylangGhost RAT Persistence
+id: d4e5f6a7-8901-4def-0123-456789012def
+status: experimental
+description: |
+    Detects PylangGhost RAT persistence mechanisms including registry
+    modifications, scheduled tasks, and file artifacts.
+references:
+    - https://any.run/cybersecurity-blog/pylangghost-malware-analysis/
+author: vajra-sec-experiment
+date: 2026/04/08
+tags:
+    - attack.persistence
+    - attack.t1547.001  # Registry Run Keys
+    - attack.t1053.005  # Scheduled Task
+level: critical
+
+logsource:
+    category: registry_set
+    product: windows
+
+detection:
+    selection_registry:
+        TargetObject|contains: '\CurrentVersion\Run'
+        Details|contains:
+            - 'NodeHelper'
+            - 'csshost.exe'
+            - 'nvidiaRelease'
+            - 'update.vbs'
+
+    condition: selection_registry
+---
+title: Lazarus PylangGhost Scheduled Task Persistence
+id: e5f6a7b8-9012-4ef0-1234-567890123ef0
+status: experimental
+description: Detects PylangGhost/OtterCookie scheduled task creation for persistence
+references:
+    - https://any.run/cybersecurity-blog/pylangghost-malware-analysis/
+    - https://redasgard.com/blog/hunting-lazarus-part3-infrastructure-too-perfect
+author: vajra-sec-experiment
+date: 2026/04/08
+tags:
+    - attack.persistence
+    - attack.t1053.005
+level: critical
+
+logsource:
+    category: process_creation
+    product: windows
+
+detection:
+    selection_schtasks:
+        Image|endswith: '\schtasks.exe'
+        CommandLine|contains:
+            - 'NodeUpdate'
+            - 'Runtime Broker'
+            - 'Windows Update Script'
+
+    selection_startup:
+        TargetFilename|endswith:
+            - '\Startup\Windows Update Script.pyw'
+            - '\Startup\update.vbs'
+
+    condition: selection_schtasks or selection_startup
+---
+title: Lazarus OtterCookie Wallet Extension Theft
+id: f6a7b8c9-0123-4f01-2345-678901234f01
+status: experimental
+description: Detects OtterCookie targeting browser cryptocurrency extension data
+references:
+    - https://redasgard.com/blog/hunting-lazarus-part3-infrastructure-too-perfect
+author: vajra-sec-experiment
+date: 2026/04/08
+tags:
+    - attack.credential_access
+    - attack.t1555.003  # Credentials from Web Browsers
+level: critical
+
+logsource:
+    category: file_access
+    product: windows
+
+detection:
+    selection_extension_dirs:
+        TargetFilename|contains:
+            - '\nkbihfbeogaeaoehlefnkodbefgpgknn'   # MetaMask
+            - '\bfnaelmomeimhlpmgjnjophhpkkoljpa'     # Phantom
+            - '\dmkamcknogkgcdfhhbddcghachkejeap'     # Keplr
+            - '\fhbohimaelbohpjbbldcngcnapndodjp'     # Binance Chain
+            - '\aholpfdialjgjfhomihkjbmgjidlcdno'     # Core
+            - '\cgeeodpfagjceefieflmdfphplkenlfk'     # Tonkeeper
+
+    selection_process:
+        Image|endswith:
+            - '\node.exe'
+            - '\python.exe'
+            - '\csshost.exe'
+
+    condition: selection_extension_dirs and selection_process

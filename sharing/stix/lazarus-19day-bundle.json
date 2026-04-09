@@ -1,0 +1,1303 @@
+{
+  "type": "bundle",
+  "id": "bundle--486de417-3b96-4e0e-9c26-a6ac464e50ca",
+  "spec_version": "2.1",
+  "objects": [
+    {
+      "type": "identity",
+      "spec_version": "2.1",
+      "id": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "name": "Vajra Security Research",
+      "description": "Automated CTI enrichment from the Lazarus 19-Day A/B Test investigation. Original research by @toxy4ny (KL3FT3Z).",
+      "identity_class": "organization"
+    },
+    {
+      "type": "marking-definition",
+      "spec_version": "2.1",
+      "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+      "created": "2017-01-20T00:00:00.000Z",
+      "definition_type": "statement",
+      "definition": {
+        "statement": "Copyright 2026, Vajra Security Research. TLP:CLEAR."
+      }
+    },
+    {
+      "type": "threat-actor",
+      "spec_version": "2.1",
+      "id": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Lazarus Group",
+      "description": "North Korean state-sponsored threat group attributed to the Reconnaissance General Bureau (RGB). Active since at least 2009. Known for financially motivated operations targeting cryptocurrency, banking, and defense sectors. MITRE ATT&CK ID: G0032.",
+      "aliases": [
+        "HIDDEN COBRA",
+        "Diamond Sleet",
+        "G0032",
+        "Zinc",
+        "NICKEL ACADEMY"
+      ],
+      "threat_actor_types": [
+        "nation-state"
+      ],
+      "roles": [
+        "agent"
+      ],
+      "sophistication": "expert",
+      "resource_level": "government",
+      "primary_motivation": "financial-gain",
+      "secondary_motivations": [
+        "ideology"
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "G0032",
+          "url": "https://attack.mitre.org/groups/G0032/"
+        },
+        {
+          "source_name": "CISA",
+          "description": "HIDDEN COBRA - North Korean Malicious Cyber Activity"
+        }
+      ]
+    },
+    {
+      "type": "location",
+      "spec_version": "2.1",
+      "id": "location--2b75f623-d7be-4d1b-8aee-c9f49dca575d",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "North Korea (DPRK)",
+      "country": "KP",
+      "region": "eastern-asia"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--258f882e-56b2-4e45-8887-df3aed7cdec6",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "located-at",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "location--2b75f623-d7be-4d1b-8aee-c9f49dca575d"
+    },
+    {
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "campaign--f9ede365-986e-4d71-9ba8-8227888f4702",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "OpenClaw Airdrop",
+      "description": "Wave 1 of the Lazarus 19-Day A/B Test campaign. Exploits greed/FOMO via a fake $5000 CLAW token airdrop targeting GitHub developers who starred OpenClaw repositories. Redirects through share.google to token-claw.xyz which deploys the eleven.js wallet drainer.",
+      "first_seen": "2026-03-20T00:00:00.000Z",
+      "objective": "wallet draining",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "external_references": [
+        {
+          "source_name": "toxy4ny",
+          "description": "OpenClaw phishing analysis",
+          "url": "https://dev.to/toxy4ny/github-developers-targeted-in-sophisticated-openclaw-phishing-scam-1lei"
+        }
+      ]
+    },
+    {
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "campaign--d388bbf4-19ad-4fcb-a5dd-470c9d41647d",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Fake VS Code CVE",
+      "description": "Wave 2 of the Lazarus 19-Day A/B Test campaign. Exploits fear/urgency via a fabricated critical VS Code vulnerability (CVE-2026-40271-64398) attributed to a fake researcher. Targets Microsoft Windows users via GitHub notification pipeline abuse and Google Share redirects.",
+      "first_seen": "2026-03-27T00:00:00.000Z",
+      "objective": "malware delivery",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "external_references": [
+        {
+          "source_name": "toxy4ny",
+          "description": "Fake CVE wave analysis",
+          "url": "https://dev.to/toxy4ny/lazarus-group-evolves-from-fake-airdrops-to-fake-cves-new-github-phishing-wave-2bm7"
+        }
+      ]
+    },
+    {
+      "type": "campaign",
+      "spec_version": "2.1",
+      "id": "campaign--654e8b20-3b7d-4e5c-9a19-cacccc2c8ec2",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Uniswap Recruitment",
+      "description": "Wave 3 of the Lazarus 19-Day A/B Test campaign. Exploits ambition/career aspirations via a fake $300K-$450K remote blockchain developer position at Uniswap. Uses ClickFix interview technique to deploy GolangGhost/PylangGhost RATs. Matches Operation Dream Job and Contagious Interview patterns.",
+      "first_seen": "2026-04-08T00:00:00.000Z",
+      "objective": "RAT deployment",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "external_references": [
+        {
+          "source_name": "toxy4ny",
+          "description": "Lazarus 19-Day A/B Test original article",
+          "url": "https://dev.to/toxy4ny/lazarus-groups-19-day-ab-test-how-north-korean-apt-pivoted-from-airdrops-to-fake-cves-to-dream-42af"
+        }
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--27145ecf-7e90-45b9-893b-87bf6fc16dfe",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "eleven.js",
+      "description": "Obfuscated JavaScript wallet drainer deployed via the OpenClaw Airdrop campaign. Features heavy obfuscation, real-time command monitoring (PromptTx, Approved, Declined tracking), a 'nuke' function that wipes localStorage to destroy forensic evidence, and C2 communication to watery-compost.today for wallet data exfiltration.",
+      "malware_types": [
+        "webshell"
+      ],
+      "is_family": true,
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--ddcd875c-5ae6-430e-9e6c-b7f238ea27bf",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "GolangGhost",
+      "description": "Go-based Remote Access Trojan (RAT) attributed to Lazarus Group. Communicates via HTTP/HTTPS. Targets browser data and cryptocurrency wallets. Deployed via ClickFix social engineering (fake CAPTCHA leading to clipboard-injected terminal command). Associated with Contagious Interview and Operation Dream Job campaigns.",
+      "malware_types": [
+        "remote-access-trojan"
+      ],
+      "is_family": true,
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "external_references": [
+        {
+          "source_name": "Malpedia",
+          "url": "https://malpedia.caad.fkie.fraunhofer.de/details/win.golangghost"
+        }
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--aaf7ddba-db89-4bae-96b8-751c6c0b0d38",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "PylangGhost",
+      "description": "Python reimplementation of GolangGhost, likely AI-assisted (Go-like logic patterns, commented-out sections). Targets cryptocurrency workers through fake job sites. Components include auto.py.bin, command.py.bin, config.py.bin, nvidia.py.bin, and util.py.bin.",
+      "malware_types": [
+        "remote-access-trojan"
+      ],
+      "is_family": true,
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "external_references": [
+        {
+          "source_name": "Cisco Talos",
+          "url": "https://www.mexc.com/news/cisco-talos-new-north-korean-threat-pylangghost-targets-crypto-workers-through-fake-job-sites/12514"
+        }
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--4cceebbe-5f4c-4191-b0a9-9d16c0314c92",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "StoatWaffle",
+      "description": "VS Code auto-run malware deployed via malicious tasks.json configuration. Uses 'runOn: folderOpen' to trigger execution when a workspace is opened. Mitigated by VS Code 1.109+ where task.allowAutomaticTasks is disabled by default. Reported by The Hacker News in March 2026.",
+      "malware_types": [
+        "trojan"
+      ],
+      "is_family": true,
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ],
+      "external_references": [
+        {
+          "source_name": "The Hacker News",
+          "url": "https://thehackernews.com/2026/03/north-korean-hackers-abuse-vs-code-auto.html"
+        }
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--e9381554-61fb-48e2-964b-953bcf1d17c5",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "BeaverTail",
+      "description": "JavaScript-based information stealer attributed to Lazarus Group. Used in Contagious Interview campaigns to extract browser credentials, cryptocurrency wallet data, and system information. Communicates with dedicated C2 infrastructure on Majestic Hosting (AS396073).",
+      "malware_types": [
+        "spyware"
+      ],
+      "is_family": true,
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "malware",
+      "spec_version": "2.1",
+      "id": "malware--424e4a4e-a50f-4f8d-8344-0aa67fddc2fb",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "OtterCookie",
+      "description": "Backdoor attributed to Lazarus Group. Used as a secondary payload in Contagious Interview operations. Provides persistent access and command execution capabilities on compromised systems.",
+      "malware_types": [
+        "backdoor"
+      ],
+      "is_family": true,
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "infrastructure",
+      "spec_version": "2.1",
+      "id": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Lazarus 19-Day Campaign C2 Infrastructure",
+      "description": "Command-and-control infrastructure used across the Lazarus 19-Day A/B Test campaign and related Contagious Interview operations. Includes dedicated C2 servers on Majestic Hosting (AS396073), secondary C2 on TIER-NET (AS397423), FTP exfiltration servers, and Vercel-hosted stage 1 distribution points.",
+      "infrastructure_types": [
+        "command-and-control"
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--f0e7cf84-9463-44fe-9438-ba8101ed1551",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "token-claw.xyz",
+      "description": "Landing domain for Wave 1 (OpenClaw Airdrop). Clone of openclaw.ai with wallet-connect injection that deploys eleven.js wallet drainer. Status: sinkholed.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[domain-name:value = 'token-claw.xyz']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--85de1696-a980-46a0-84fd-85e68cd6c2b7",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "watery-compost.today",
+      "description": "C2 domain for eleven.js wallet drainer. Receives exfiltrated wallet data from the OpenClaw Airdrop campaign.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[domain-name:value = 'watery-compost.today']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--75d2692a-fdf2-433c-9aa2-0c1f7b985245",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "360scanner.store",
+      "description": "Domain associated with Lazarus Group Contagious Interview infrastructure.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[domain-name:value = '360scanner.store']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--be1944be-d9c5-4bfe-b2d9-93abe0c8611c",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "tetrismic.vercel.app",
+      "description": "Vercel-hosted domain used in Lazarus Group Contagious Interview operations for malware staging and distribution.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[domain-name:value = 'tetrismic.vercel.app']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--95101fcc-f1b7-4fde-a053-b4c0ecd02a4a",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "C2 IP 147.124.213.232",
+      "description": "Dedicated C2 server (hostname WR232) on Majestic Hosting AS396073. BeaverTail C2 infrastructure.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '147.124.213.232']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--46ce9386-b950-4d5d-b179-11a62306f6de",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "C2 IP 147.124.212.125",
+      "description": "Dedicated C2 server (hostname W9_125) on Majestic Hosting AS396073. BeaverTail C2 infrastructure.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '147.124.212.125']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--f53c1f31-1de3-4cae-aa5d-ea1a03a39e69",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "C2 IP 216.250.251.87",
+      "description": "Dedicated C2 server (hostname WIN-8OA3CCQAE4D) on Majestic Hosting AS396073. BeaverTail C2 infrastructure.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '216.250.251.87']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--31a2c216-6a91-463b-b449-841b3475e8b4",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "OtterCookie C2 IP 172.86.105.40",
+      "description": "OtterCookie C2 server used in Lazarus Group operations.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '172.86.105.40']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--cb857e84-210e-44f5-bd36-53b4b4873c50",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "OtterCookie C2 IP 172.86.116.178",
+      "description": "OtterCookie C2 server used in Lazarus Group operations.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '172.86.116.178']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--161ab10f-3ed1-4eeb-a632-198409b8474f",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Secondary C2 IP 66.235.168.238",
+      "description": "Secondary C2 server (hostname Z238) on TIER-NET AS397423. Custom binary protocol on ports 22411-22412, XOR key 0xcb.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '66.235.168.238']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--7c2ccc06-3be7-45f9-90b2-bcff51f5a5b1",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Secondary C2 IP 45.43.11.199",
+      "description": "Secondary C2 server (hostname WIN-4MOD9QVI0EN) on TIER-NET AS397423.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '45.43.11.199']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--64b57fca-5cad-4b85-a927-83c40abd5702",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "MetaMask Injector C2 IP 66.235.63.55",
+      "description": "Secondary C2 server hosting MetaMask injector module on TIER-NET AS397423.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '66.235.63.55']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--9bd92612-8cd3-4eda-ae50-8a015ff9bd67",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Secondary C2 IP 45.59.163.55",
+      "description": "Secondary C2 server (hostname PS55) on TIER-NET AS397423.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '45.59.163.55']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--88f47cda-6c40-45ef-935c-0ab5780bad2b",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "FTP Exfil Server 195.201.104.53",
+      "description": "FTP exfiltration server used by Lazarus Group for data staging and exfiltration.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '195.201.104.53']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--de41e5e5-cd9c-4fef-a02d-0aa65d8f693a",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "FTP Exfil Server 144.172.89.198",
+      "description": "FTP exfiltration server used by Lazarus Group for data staging and exfiltration.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '144.172.89.198']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--c5877891-2963-4ed8-82eb-9b494b20d0e1",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "FTP Exfil Server 216.126.227.239",
+      "description": "FTP exfiltration server used by Lazarus Group for data staging and exfiltration.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '216.126.227.239']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--7a2be01e-a31a-4d11-ad62-d4e698468f79",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "PylangGhost C2 IP 151.243.101.229",
+      "description": "PylangGhost RAT C2 server.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[ipv4-addr:value = '151.243.101.229']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--bb375da1-b218-4928-952d-a97cdf5896ca",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Google Share Redirect - Wave 1",
+      "description": "Google Share redirect URL used in Wave 1 (OpenClaw Airdrop) to bypass email security filters and redirect victims to token-claw.xyz.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[url:value = 'https://share.google/eGzdhAucWKKcwkZi9']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--01359c1c-2fe4-447f-b776-bdd36c180640",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Google Share Redirect - Wave 2",
+      "description": "Google Share redirect URL used in Wave 2 (Fake VS Code CVE) to bypass email security filters and redirect victims to malware delivery infrastructure.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[url:value = 'https://share.google/N3NwdcmyaYu9kwZ6D']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-27T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--fa4b7895-99b2-4630-8da9-5de203e779ce",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Google Share Redirect - Wave 3",
+      "description": "Google Share redirect URL used in Wave 3 (Uniswap Recruitment) to bypass email security filters and redirect victims to fake recruitment page for RAT deployment.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[url:value = 'https://share.google/GVTYMEMANZWqTptr2']",
+      "pattern_type": "stix",
+      "valid_from": "2026-04-08T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--71f32c8d-ea3a-4ea9-aa2d-af0584149d51",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "PylangGhost auto.py.bin SHA256",
+      "description": "SHA256 hash of PylangGhost component auto.py.bin.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[file:hashes.'SHA-256' = 'bb794019f8a63966e4a16063dc785fafe8a5f7c7553bcd3da661c7054c6674c7']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--04343f0e-8124-41a8-8aa2-11fa3431731b",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "PylangGhost command.py.bin SHA256",
+      "description": "SHA256 hash of PylangGhost component command.py.bin.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[file:hashes.'SHA-256' = 'c4fd45bb8c33a5b0fa5189306eb65fa3db53a53c1092078ec62f3fc19bc05dcb']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--7f395b77-b92f-4f3c-a09b-0ddc5e224d04",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "PylangGhost config.py.bin SHA256",
+      "description": "SHA256 hash of PylangGhost component config.py.bin.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[file:hashes.'SHA-256' = 'c7ecf8be40c1e9a9a8c3d148eb2ae2c0c64119ab46f51f603a00b812a7be3b45']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--4f28a933-8dee-414a-88af-fc86460dba9a",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "PylangGhost nvidia.py.bin SHA256",
+      "description": "SHA256 hash of PylangGhost component nvidia.py.bin.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[file:hashes.'SHA-256' = 'a179caf1b7d293f7c14021b80deecd2b42bbd409e052da767e0d383f71625940']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--4f3f14ef-84e2-428a-8ba9-7255b12db75d",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "PylangGhost util.py.bin SHA256",
+      "description": "SHA256 hash of PylangGhost component util.py.bin.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[file:hashes.'SHA-256' = 'ef04a839f60911a5df2408aebd6d9af432229d95b4814132ee589f178005c72f']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--5ac689e0-9368-482a-9354-ffea22afbe34",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Attacker Cryptocurrency Wallet",
+      "description": "Ethereum wallet address used by Lazarus Group in the OpenClaw Airdrop campaign for collecting drained cryptocurrency. Zero transactions at time of discovery.",
+      "indicator_types": [
+        "malicious-activity"
+      ],
+      "pattern": "[cryptocurrency-transaction:currency = 'ETH' AND cryptocurrency-transaction:output.address = '0x6981E9EA7023a8407E4B08ad97f186A5CBDaFCf5']",
+      "pattern_type": "stix",
+      "valid_from": "2026-03-20T00:00:00.000Z",
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "vulnerability",
+      "spec_version": "2.1",
+      "id": "vulnerability--c6054870-1887-4bd9-9443-8103b9bc7df1",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "CVE-2026-40271-64398 (FABRICATED)",
+      "description": "FABRICATED vulnerability used as a social engineering lure in Wave 2 (Fake VS Code CVE) of the Lazarus 19-Day campaign. This CVE does NOT exist in MITRE, NVD, or VulnGraph. The CVE ID format is non-standard (5-digit suffix with dash extension). Claims to affect VS Code versions 1.05.0-1.112.4 (version 1.112.x does not exist). Attributed to fake researcher 'Nathaniel Pemberton, Precision Algorithmics'. Used to create urgency and trick developers into installing malware disguised as a security update.",
+      "external_references": [
+        {
+          "source_name": "cve",
+          "external_id": "CVE-2026-40271-64398",
+          "description": "FABRICATED - This CVE ID does not exist in any authoritative vulnerability database. Used as social engineering lure."
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--d1dd5881-8e69-4461-8c58-e7b4d3bc83ef",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Spearphishing via Service",
+      "description": "Lazarus Group abuses GitHub's notification pipeline to deliver phishing messages. Mass-mentioning users in GitHub discussions triggers automated emails from notifications@github.com, a legitimate and trusted sender, effectively bypassing email security controls.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1566.003",
+          "url": "https://attack.mitre.org/techniques/T1566/003/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--41fd9227-9896-4043-b3b5-7e785f73ea97",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "User Execution: Malicious File",
+      "description": "Victims are tricked into executing malicious files through social engineering lures including fake airdrops (eleven.js), fake security updates (StoatWaffle), and ClickFix interview techniques (GolangGhost terminal commands).",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1204.002",
+          "url": "https://attack.mitre.org/techniques/T1204/002/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--e0bea785-3676-4ea0-b181-60a963e43706",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "Credentials from Web Browsers",
+      "description": "BeaverTail and GolangGhost/PylangGhost extract stored credentials, cookies, and cryptocurrency wallet data from web browsers on compromised systems.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1555.003",
+          "url": "https://attack.mitre.org/techniques/T1555/003/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "attack-pattern",
+      "spec_version": "2.1",
+      "id": "attack-pattern--09996914-5a03-4e0f-afbb-c4a36ac7f812",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "name": "JavaScript Execution",
+      "description": "Multiple campaign payloads use JavaScript execution including eleven.js (wallet drainer), BeaverTail (information stealer), and VS Code tasks.json auto-run abuse.",
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1059.007",
+          "url": "https://attack.mitre.org/techniques/T1059/007/"
+        }
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "note",
+      "spec_version": "2.1",
+      "id": "note--745dcf18-30ec-4f68-9db8-eb1dcb44d24d",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "abstract": "Campaign overview: Lazarus 19-Day A/B Test",
+      "content": "Between March 20 and April 8, 2026, Lazarus Group (G0032) executed a three-wave social engineering campaign against GitHub developers. Each wave tested a different psychological trigger (greed, fear, ambition) against the same target pool. The campaign abuses GitHub's notification pipeline and Google Share redirects to bypass email security controls. All three waves share identical delivery mechanisms: GitHub discussion mass-mention -> notifications@github.com email -> Google Share redirect -> attacker infrastructure. Original research by @toxy4ny (KL3FT3Z) of Hackteam.Red.",
+      "object_refs": [
+        "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+        "campaign--f9ede365-986e-4d71-9ba8-8227888f4702",
+        "campaign--d388bbf4-19ad-4fcb-a5dd-470c9d41647d",
+        "campaign--654e8b20-3b7d-4e5c-9a19-cacccc2c8ec2"
+      ],
+      "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+      ]
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--6a5c0482-03b2-406f-9532-c1ae3a753cbc",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "attributed-to",
+      "description": "OpenClaw Airdrop campaign is attributed to Lazarus Group.",
+      "source_ref": "campaign--f9ede365-986e-4d71-9ba8-8227888f4702",
+      "target_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--32ef77a4-12a5-4919-a3c7-935510836eb7",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "attributed-to",
+      "description": "Fake VS Code CVE campaign is attributed to Lazarus Group.",
+      "source_ref": "campaign--d388bbf4-19ad-4fcb-a5dd-470c9d41647d",
+      "target_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--34b51a45-ea17-42b7-96a6-cc35c10617e5",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "attributed-to",
+      "description": "Uniswap Recruitment campaign is attributed to Lazarus Group.",
+      "source_ref": "campaign--654e8b20-3b7d-4e5c-9a19-cacccc2c8ec2",
+      "target_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--93579442-9209-498e-8eeb-5246a8195719",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses eleven.js wallet drainer in the OpenClaw Airdrop campaign.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "malware--27145ecf-7e90-45b9-893b-87bf6fc16dfe"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--c23570bc-194c-44aa-8587-4462934c2e5e",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses GolangGhost RAT deployed via ClickFix technique in recruitment campaigns.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "malware--ddcd875c-5ae6-430e-9e6c-b7f238ea27bf"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--250f9616-39e3-4b14-b0e4-fa96ab6dcfcb",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses PylangGhost, a Python reimplementation of GolangGhost.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "malware--aaf7ddba-db89-4bae-96b8-751c6c0b0d38"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--810a3778-046f-44cd-9299-6d97c6d5cf32",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses StoatWaffle VS Code auto-run malware.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "malware--4cceebbe-5f4c-4191-b0a9-9d16c0314c92"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--f3a748dc-b06a-4769-9bde-d8c2e2d064bb",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses BeaverTail JavaScript stealer in Contagious Interview operations.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "malware--e9381554-61fb-48e2-964b-953bcf1d17c5"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--5b190d31-6e12-46c5-aebd-3717b652231f",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses OtterCookie backdoor as secondary payload in Contagious Interview operations.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "malware--424e4a4e-a50f-4f8d-8344-0aa67fddc2fb"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--6bfdb53a-75ef-4171-919c-d137e5e72a71",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "OpenClaw Airdrop campaign uses token-claw.xyz as landing domain and watery-compost.today as C2.",
+      "source_ref": "campaign--f9ede365-986e-4d71-9ba8-8227888f4702",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--3936aec6-13ac-4cc2-a43d-6c37098c7aa2",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Fake VS Code CVE campaign uses dedicated C2 infrastructure for malware delivery.",
+      "source_ref": "campaign--d388bbf4-19ad-4fcb-a5dd-470c9d41647d",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--5a0989d8-2f0e-4222-ad3a-d42cf0d61646",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Uniswap Recruitment campaign uses C2 infrastructure for GolangGhost/PylangGhost RAT deployment.",
+      "source_ref": "campaign--654e8b20-3b7d-4e5c-9a19-cacccc2c8ec2",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--1384c9d6-9014-4920-b699-191492d81aa6",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "communicates-with",
+      "description": "eleven.js wallet drainer communicates with watery-compost.today C2 for wallet data exfiltration.",
+      "source_ref": "malware--27145ecf-7e90-45b9-893b-87bf6fc16dfe",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--a03dbee2-2139-48e4-be6f-38ab841b5079",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "communicates-with",
+      "description": "GolangGhost RAT communicates with dedicated C2 servers on Majestic Hosting (147.124.213.232, 147.124.212.125, 216.250.251.87) via HTTP/HTTPS.",
+      "source_ref": "malware--ddcd875c-5ae6-430e-9e6c-b7f238ea27bf",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--341f2291-c7d9-4c59-bfaa-25ff8024c046",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "communicates-with",
+      "description": "PylangGhost RAT communicates with C2 server at 151.243.101.229 and dedicated Majestic Hosting infrastructure.",
+      "source_ref": "malware--aaf7ddba-db89-4bae-96b8-751c6c0b0d38",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--6f2ace83-745c-4be6-9432-4a991b8fb2b6",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "communicates-with",
+      "description": "StoatWaffle malware communicates with C2 infrastructure for payload retrieval and command execution.",
+      "source_ref": "malware--4cceebbe-5f4c-4191-b0a9-9d16c0314c92",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--422d5830-b806-4d0b-af46-b83af774314c",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "communicates-with",
+      "description": "BeaverTail stealer communicates with dedicated C2 servers on Majestic Hosting AS396073 (147.124.213.232, 147.124.212.125, 216.250.251.87).",
+      "source_ref": "malware--e9381554-61fb-48e2-964b-953bcf1d17c5",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--6dc5a0eb-8e7a-4948-b4f6-90bb5c776bd8",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "communicates-with",
+      "description": "OtterCookie backdoor communicates with C2 servers at 172.86.105.40 and 172.86.116.178.",
+      "source_ref": "malware--424e4a4e-a50f-4f8d-8344-0aa67fddc2fb",
+      "target_ref": "infrastructure--3fe1fd87-7a81-4ef7-ac73-3b4fdf913641"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--4e3720cc-dcf1-4b80-86a2-2796c29aeafd",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "Token-claw.xyz domain indicator indicates the OpenClaw Airdrop campaign.",
+      "source_ref": "indicator--f0e7cf84-9463-44fe-9438-ba8101ed1551",
+      "target_ref": "campaign--f9ede365-986e-4d71-9ba8-8227888f4702"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--5513490b-2634-473c-8596-5a79f04a9bde",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "Watery-compost.today C2 domain indicator indicates the OpenClaw Airdrop campaign.",
+      "source_ref": "indicator--85de1696-a980-46a0-84fd-85e68cd6c2b7",
+      "target_ref": "campaign--f9ede365-986e-4d71-9ba8-8227888f4702"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--3ea55e2d-c99d-4857-8d08-843b820e13e0",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "Google Share redirect for Wave 1 indicates the OpenClaw Airdrop campaign.",
+      "source_ref": "indicator--bb375da1-b218-4928-952d-a97cdf5896ca",
+      "target_ref": "campaign--f9ede365-986e-4d71-9ba8-8227888f4702"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--998f5d63-01b0-4592-a731-5c4f171a2556",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "Google Share redirect for Wave 2 indicates the Fake VS Code CVE campaign.",
+      "source_ref": "indicator--01359c1c-2fe4-447f-b776-bdd36c180640",
+      "target_ref": "campaign--d388bbf4-19ad-4fcb-a5dd-470c9d41647d"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--a3a5e28e-1d5b-422b-a80e-0fce1514dac4",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "Google Share redirect for Wave 3 indicates the Uniswap Recruitment campaign.",
+      "source_ref": "indicator--fa4b7895-99b2-4630-8da9-5de203e779ce",
+      "target_ref": "campaign--654e8b20-3b7d-4e5c-9a19-cacccc2c8ec2"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--ba3e80a4-0178-4e99-9185-437b380e4127",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "PylangGhost file hash indicators indicate the Lazarus Group threat actor.",
+      "source_ref": "indicator--71f32c8d-ea3a-4ea9-aa2d-af0584149d51",
+      "target_ref": "malware--aaf7ddba-db89-4bae-96b8-751c6c0b0d38"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--a38cdf0b-b374-4eef-8066-1d0b977a4058",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "PylangGhost command.py.bin hash indicates PylangGhost malware.",
+      "source_ref": "indicator--04343f0e-8124-41a8-8aa2-11fa3431731b",
+      "target_ref": "malware--aaf7ddba-db89-4bae-96b8-751c6c0b0d38"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--b54502dd-33ac-4b1d-a52e-47cfebc697f3",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "PylangGhost config.py.bin hash indicates PylangGhost malware.",
+      "source_ref": "indicator--7f395b77-b92f-4f3c-a09b-0ddc5e224d04",
+      "target_ref": "malware--aaf7ddba-db89-4bae-96b8-751c6c0b0d38"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--421c7b8e-b9a7-4272-92d2-b4e8ad5ee2fa",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "PylangGhost nvidia.py.bin hash indicates PylangGhost malware.",
+      "source_ref": "indicator--4f28a933-8dee-414a-88af-fc86460dba9a",
+      "target_ref": "malware--aaf7ddba-db89-4bae-96b8-751c6c0b0d38"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--a631b65d-a762-4884-ae09-78bdef485f97",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "PylangGhost util.py.bin hash indicates PylangGhost malware.",
+      "source_ref": "indicator--4f3f14ef-84e2-428a-8ba9-7255b12db75d",
+      "target_ref": "malware--aaf7ddba-db89-4bae-96b8-751c6c0b0d38"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--da7f86d9-b2c1-4434-a16a-cd45253f566a",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "indicates",
+      "description": "Cryptocurrency wallet indicator indicates the OpenClaw Airdrop campaign.",
+      "source_ref": "indicator--5ac689e0-9368-482a-9354-ffea22afbe34",
+      "target_ref": "campaign--f9ede365-986e-4d71-9ba8-8227888f4702"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--30f05822-58e9-4732-b852-ea8e345fb6c0",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses Spearphishing via Service (T1566.003) by abusing GitHub notification pipeline.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "attack-pattern--d1dd5881-8e69-4461-8c58-e7b4d3bc83ef"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--f6a573d8-4e3b-49b1-bec8-1c3bc320ef6d",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses User Execution: Malicious File (T1204.002) via social engineering lures.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "attack-pattern--41fd9227-9896-4043-b3b5-7e785f73ea97"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--d2a917e7-6c65-4047-9781-42952cf8be58",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses Credentials from Web Browsers (T1555.003) to extract stored credentials and wallet data.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "attack-pattern--e0bea785-3676-4ea0-b181-60a963e43706"
+    },
+    {
+      "type": "relationship",
+      "spec_version": "2.1",
+      "id": "relationship--1d966e4c-f16c-4c3e-b7e4-271f71f87e2c",
+      "created": "2026-04-08T00:00:00.000Z",
+      "modified": "2026-04-08T00:00:00.000Z",
+      "created_by_ref": "identity--95b2f17d-34fd-47b9-bed2-6dac75fe881a",
+      "relationship_type": "uses",
+      "description": "Lazarus Group uses JavaScript Execution (T1059.007) across multiple payloads including eleven.js and BeaverTail.",
+      "source_ref": "threat-actor--60761c41-c6ee-4eed-8607-8492905c53ee",
+      "target_ref": "attack-pattern--09996914-5a03-4e0f-afbb-c4a36ac7f812"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+title: Lazarus GitHub Notification Pipeline Phishing
+id: a1b2c3d4-5678-4abc-def0-123456789abc
+status: experimental
+description: |
+    Detects indicators of the Lazarus Group's GitHub notification pipeline abuse
+    campaign that uses mass-mentions in GitHub discussions to deliver phishing
+    emails through legitimate GitHub notification infrastructure.
+references:
+    - https://dev.to/toxy4ny/lazarus-groups-19-day-ab-test-how-north-korean-apt-pivoted-from-airdrops-to-fake-cves-to-dream-42af
+    - https://github.com/orgs/community/discussions/190675
+    - https://securityboulevard.com/2026/04/the-growing-abuse-of-github-and-gitlab-in-phishing-campaigns/
+author: vajra-sec-experiment
+date: 2026/04/08
+tags:
+    - attack.initial_access
+    - attack.t1566.003  # Phishing via Service
+    - attack.t1204.001  # User Execution: Malicious Link
+level: high
+
+logsource:
+    category: proxy
+    product: any
+
+detection:
+    selection_google_share:
+        c-uri|contains:
+            - 'share.google/eGzdhAucWKKcwkZi9'
+            - 'share.google/N3NwdcmyaYu9kwZ6D'
+            - 'share.google/GVTYMEMANZWqTptr2'
+
+    selection_c2_domains:
+        c-uri|contains:
+            - 'token-claw.xyz'
+            - 'watery-compost.today'
+
+    condition: selection_google_share or selection_c2_domains
+
+falsepositives:
+    - Legitimate Google Share links (filter on specific hashes)
+---
+title: Lazarus Fake CVE Social Engineering via Email
+id: b2c3d4e5-6789-4bcd-ef01-234567890bcd
+status: experimental
+description: |
+    Detects email content matching the fake VS Code CVE-2026-40271 phishing lure
+    used in Wave 2 of the Lazarus 19-day campaign.
+author: vajra-sec-experiment
+date: 2026/04/08
+tags:
+    - attack.initial_access
+    - attack.t1566.001
+level: critical
+
+logsource:
+    category: email
+    product: any
+
+detection:
+    selection_fake_cve:
+        body|contains:
+            - 'CVE-2026-40271'
+            - 'Nathaniel Pemberton'
+            - 'Precision Algorithmics'
+
+    selection_urgency:
+        body|contains|all:
+            - 'Emergency measure'
+            - 'Visual Studio Code'
+
+    selection_share:
+        body|contains: 'share.google/'
+
+    condition: selection_fake_cve or (selection_urgency and selection_share)
+
+falsepositives:
+    - Security research discussions about this specific campaign

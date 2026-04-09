@@ -1,0 +1,205 @@
+# Lazarus 19-Day Campaign - Suricata/Snort Network Rules
+# Date: 2026-04-08
+# References:
+#   - https://redasgard.com/blog/hunting-lazarus-contagious-interview-c2-infrastructure
+#   - https://www.ox.security/blog/openclaw-github-phishing-crypto-wallet-attack/
+
+# === Wave 1: OpenClaw Wallet Drainer C2 ===
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS OpenClaw C2 - watery-compost.today";
+    flow:to_server,established;
+    content:"watery-compost.today"; http_host;
+    classtype:trojan-activity;
+    sid:2026040801; rev:1;
+    metadata:attack_target Client_Endpoint, created_at 2026_04_08, deployment Perimeter, tag Lazarus_OpenClaw;
+)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS OpenClaw Phishing - token-claw.xyz";
+    flow:to_server,established;
+    content:"token-claw.xyz"; http_host;
+    classtype:social-engineering;
+    sid:2026040802; rev:1;
+)
+
+# === Google Share Redirect Phishing ===
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS Google Share Redirect - Wave 1 Airdrop";
+    flow:to_server,established;
+    content:"share.google"; http_host;
+    content:"/eGzdhAucWKKcwkZi9"; http_uri;
+    classtype:social-engineering;
+    sid:2026040803; rev:1;
+)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS Google Share Redirect - Wave 2 Fake CVE";
+    flow:to_server,established;
+    content:"share.google"; http_host;
+    content:"/N3NwdcmyaYu9kwZ6D"; http_uri;
+    classtype:social-engineering;
+    sid:2026040804; rev:1;
+)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS Google Share Redirect - Wave 3 Recruitment";
+    flow:to_server,established;
+    content:"share.google"; http_host;
+    content:"/GVTYMEMANZWqTptr2"; http_uri;
+    classtype:social-engineering;
+    sid:2026040805; rev:1;
+)
+
+# === Contagious Interview C2 Infrastructure ===
+
+# BeaverTail C2 - Majestic Hosting (AS396073)
+alert tcp $HOME_NET any -> 147.124.213.232 1244 (
+    msg:"LAZARUS BeaverTail C2 - WR232 Port 1244";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040806; rev:1;
+)
+
+alert tcp $HOME_NET any -> 147.124.212.125 1244 (
+    msg:"LAZARUS BeaverTail C2 - W9_125 Port 1244";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040807; rev:1;
+)
+
+alert tcp $HOME_NET any -> 216.250.251.87 1244 (
+    msg:"LAZARUS BeaverTail C2 - WIN-8OA3CCQAE4D Port 1244";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040808; rev:1;
+)
+
+# OtterCookie C2
+alert tcp $HOME_NET any -> 172.86.105.40 5918 (
+    msg:"LAZARUS OtterCookie C2 - Port 5918";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040809; rev:1;
+)
+
+alert tcp $HOME_NET any -> 172.86.116.178 5918 (
+    msg:"LAZARUS OtterCookie C2 - Port 5918";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040810; rev:1;
+)
+
+# Z238 Custom Binary Protocol
+alert tcp $HOME_NET any -> 66.235.168.238 [22411:22412] (
+    msg:"LAZARUS Z238 Custom Binary Protocol";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040811; rev:1;
+)
+
+# MetaMask Injector
+alert tcp $HOME_NET any -> 66.235.63.55 any (
+    msg:"LAZARUS MetaMask Injector Server";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040812; rev:1;
+)
+
+# TIER-NET Secondary Infrastructure
+alert tcp $HOME_NET any -> 45.43.11.199 any (
+    msg:"LAZARUS Secondary C2 - WIN-4MOD9QVI0EN";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040813; rev:1;
+)
+
+alert tcp $HOME_NET any -> 45.59.163.55 any (
+    msg:"LAZARUS Secondary C2 - PS55";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040814; rev:1;
+)
+
+# FTP Exfiltration Servers
+alert tcp $HOME_NET any -> 195.201.104.53 21 (
+    msg:"LAZARUS FTP Exfil Server 1";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040815; rev:1;
+)
+
+alert tcp $HOME_NET any -> 144.172.89.198 21 (
+    msg:"LAZARUS FTP Exfil Server 2";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040816; rev:1;
+)
+
+alert tcp $HOME_NET any -> 216.126.227.239 21 (
+    msg:"LAZARUS FTP Exfil Server 3";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040817; rev:1;
+)
+
+# === PylangGhost C2 ===
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS PylangGhost C2 - 360scanner.store";
+    flow:to_server,established;
+    content:"360scanner.store"; http_host;
+    classtype:trojan-activity;
+    sid:2026040818; rev:1;
+)
+
+alert http $HOME_NET any -> 151.243.101.229 8080 (
+    msg:"LAZARUS PylangGhost C2 - Raw IP Port 8080";
+    flow:to_server,established;
+    classtype:trojan-activity;
+    sid:2026040819; rev:1;
+)
+
+# === Workspace Init Telemetry Exfil ===
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS Contagious Interview - Workspace Telemetry Exfil";
+    flow:to_server,established;
+    content:"VSCode-Workspace-Init"; http_user_agent;
+    classtype:trojan-activity;
+    sid:2026040820; rev:1;
+)
+
+# === BeaverTail Endpoint Pattern ===
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS BeaverTail - Token-based C2 Endpoint";
+    flow:to_server,established;
+    content:"POST"; http_method;
+    content:"/c/"; http_uri;
+    content:"Content-Type|3a| application/json"; http_header;
+    classtype:trojan-activity;
+    sid:2026040821; rev:1;
+)
+
+# === Vercel Stage 1 Distribution ===
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS Vercel C2 Stage 1 - Active";
+    flow:to_server,established;
+    content:"tetrismic.vercel.app"; http_host;
+    classtype:trojan-activity;
+    sid:2026040822; rev:1;
+)
+
+# === Axios Supply Chain Compromise ===
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (
+    msg:"LAZARUS Axios Supply Chain - plain-crypto-js Trojan Package";
+    flow:to_server,established;
+    content:"plain-crypto-js"; http_uri;
+    content:"registry.npmjs.org"; http_host;
+    classtype:trojan-activity;
+    sid:2026040823; rev:1;
+)

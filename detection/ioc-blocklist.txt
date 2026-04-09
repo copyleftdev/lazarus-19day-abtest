@@ -1,0 +1,126 @@
+# Lazarus 19-Day Campaign IOC Blocklist
+# Generated: 2026-04-08
+# Classification: MALICIOUS
+# TLP: CLEAR
+
+# === DOMAINS ===
+token-claw.xyz
+watery-compost.today
+360scanner.store
+tetrismic.vercel.app
+codeviewer-three.vercel.app
+task-hrec.vercel.app
+kb102531x.vercel.app
+brantwork.vercel.app
+jerryfox-platform.vercel.app
+# NEW (April 2026)
+server-check-genimi.vercel.app
+nvidiasdk.fly.dev
+api.videodriverzone.cloud
+api.videotechdrivers.cloud
+api.driversnap.cloud
+api.camdriverstore.cloud
+api.driverstream.cloud
+
+# === IP ADDRESSES ===
+# BeaverTail C2 (Majestic Hosting AS396073)
+147.124.213.232
+147.124.212.125
+147.124.214.129
+216.250.251.87
+
+# OtterCookie C2
+172.86.105.40
+172.86.116.178
+86.106.85.234
+144.172.104.117
+144.172.101.45
+
+# Secondary C2 (TIER-NET AS397423)
+45.43.11.199
+66.235.63.55
+66.235.168.238
+45.59.163.55
+
+# FTP Exfiltration
+195.201.104.53
+144.172.89.198
+216.126.227.239
+
+# MonoVM Operator Access
+23.227.199.7
+
+# PylangGhost C2
+151.243.101.229
+13.107.246.45
+
+# NEW (April 2026) - OtterCookie v2 (RouterHosting AS14956)
+216.126.237.71
+
+# NEW - Breakglass cluster
+95.216.37.186
+95.164.17.24
+172.86.93.139
+45.59.163.23
+
+# OtterCookie cluster
+172.86.105.40
+172.86.116.178
+86.106.85.234
+144.172.104.117
+144.172.101.45
+
+# === GOOGLE SHARE REDIRECTS ===
+share.google/eGzdhAucWKKcwkZi9
+share.google/N3NwdcmyaYu9kwZ6D
+share.google/GVTYMEMANZWqTptr2
+
+# === CRYPTOCURRENCY WALLETS ===
+0x6981E9EA7023a8407E4B08ad97f186A5CBDaFCf5
+
+# === FILE HASHES (SHA256) ===
+# PylangGhost auto.py.bin
+bb794019f8a63966e4a16063dc785fafe8a5f7c7553bcd3da661c7054c6674c7
+# PylangGhost command.py.bin
+c4fd45bb8c33a5b0fa5189306eb65fa3db53a53c1092078ec62f3fc19bc05dcb
+# PylangGhost config.py.bin
+c7ecf8be40c1e9a9a8c3d148eb2ae2c0c64119ab46f51f603a00b812a7be3b45
+# PylangGhost nvidia.py.bin
+a179caf1b7d293f7c14021b80deecd2b42bbd409e052da767e0d383f71625940
+# PylangGhost util.py.bin
+ef04a839f60911a5df2408aebd6d9af432229d95b4814132ee589f178005c72f
+
+# === FAKE CVE ===
+CVE-2026-40271-64398
+
+# === MALICIOUS NPM PACKAGES ===
+plain-crypto-js@4.2.1
+axios@1.14.1
+axios@0.30.4
+# NEW (April 2026) - OtterCookie AI tool targeting
+gemini-ai-checker
+express-flowlimit
+chai-extensions-extras
+# PylangGhost packages
+@jaime9008/math-service
+react-refresh-update
+
+# === USER-AGENT STRINGS ===
+VSCode-Workspace-Init/1.0
+
+# === CAMPAIGN TOKENS ===
+hkMrMq7
+kmHgMq7
+dGVhbTA1
+dGVhbTE1
+31df390f0305
+env08539
+
+# === ENCRYPTION KEYS (for forensic correlation) ===
+# G01d*8@(    - File encryption
+# G0Md*8@(    - Network module
+# Vw1aGYoP    - Base85 layer
+# !!!HappyPenguin1950!!! - Tsunami URL encoding
+# Xt3rqfmL    - Client/payload module
+# Ze4pq4iT    - MetaMask injector
+# 0xcb        - Z238 binary protocol XOR
