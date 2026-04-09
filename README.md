@@ -20,6 +20,7 @@ Deep-dive threat intelligence package on Lazarus Group's three-wave GitHub phish
 - [Threat Sharing Formats](#threat-sharing-formats)
 - [Quick Start](#quick-start)
 - [Sources and Tools](#sources-and-tools)
+- [Built with Vajra](#built-with-vajra)
 - [Credits](#credits)
 - [Disclaimer and License](#disclaimer-and-license)
 
@@ -303,6 +304,60 @@ vajra fingerprint intel/iocs.json
 | [Silent Push](https://www.silentpush.com) | Front company identification | Apr 2025 |
 | Etherscan | Blockchain wallet forensics | Live |
 | [Vajra](tools/vajra-skill.md) | Deterministic structural analysis of IOC data | Local tool |
+
+---
+
+## Built with Vajra
+
+[Vajra](https://github.com/copyleftdev/vajra) is a deterministic semantic reduction engine that analyzes structured data for shape, entropy, anomalies, and cross-field relationships. It was used throughout this investigation to surface findings that traditional tools miss.
+
+### What Vajra Found in This Investigation
+
+**Malware Obfuscation Fingerprinting** -- Vajra parsed the deobfuscated InvisibleFerret source as a 64,462-node AST and discovered that Lazarus obfuscation produces a deterministic structural signature: motif `1c47174c` appears at a consistent 2:1 ratio with motif `04898d6f` across every nesting layer. This means vajra can identify Lazarus-family malware by structural fingerprint alone, even when code is completely unreadable.
+
+```bash
+vajra fingerprint invisibleferret.py --input-format source --lang python
+# Motif 1c47174c: 28,314 occurrences  (any file >10K = likely Lazarus)
+# Motif 04898d6f: 14,576 occurrences  (ratio holds across all layers)
+```
+
+**Obfuscation Layer Drift** -- Vajra's drift command measured structural evolution across 52 decrypted payload stages, revealing that each layer adds depth but preserves the same motif ratios. Jaccard similarity of 0.41 between stage 2 and stage 52 quantifies how the obfuscation grows.
+
+```bash
+vajra drift stage2.py stage52.py --input-format source --lang python
+# Similarity: 0.41 (Jaccard)  |  95 paths added  |  28 distribution shifts
+```
+
+**Campaign Invariant Discovery** -- Vajra's invariant analysis proved all three campaign waves share an identical delivery mechanism (conditional entropy H(Y|X) = 0.000), with the only variable being the psychological trigger. The greed vector was sinkholed first; fear and ambition remain active.
+
+```bash
+vajra invariants intel/iocs.json
+# delivery -> * : H(Y|X) = 0.000, strength = 1.000  (invariant)
+# status <-> trigger : strength = 0.579  (partial dependency)
+```
+
+**Fraud-Profile Essence** -- Vajra's fraud profile scored and ranked all IOC fields by investigative relevance, surfacing the delivery mechanism invariance and status correlations as top findings.
+
+```bash
+vajra essence intel/iocs.json --profile fraud --format markdown
+```
+
+**Structural Fingerprinting for Tamper Detection** -- Every IOC dataset in this repo has a BLAKE3 fingerprint. The same input always produces byte-identical output, making vajra suitable for evidence chains and audit trails.
+
+```bash
+vajra fingerprint intel/iocs.json
+# Path set:   bab92e58fae01520af8bab684716465ce09d24e7fe4229754f01f4e68771114a
+# Typed path: dc8144ca6b3b413aaa7241af8b0572c3e554f24688a1f105ba21c1cc3186da73
+# Shape:      a57191d0797f42c553dceec3cac722e6c0095103635f7ebc935637bd69c0f2b2
+```
+
+### Install Vajra
+
+```bash
+cargo install vajra-cli
+```
+
+Or build from source: [github.com/copyleftdev/vajra](https://github.com/copyleftdev/vajra)
 
 ---
 
